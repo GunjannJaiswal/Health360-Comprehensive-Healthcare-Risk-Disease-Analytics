@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<workbook source-build='2023.1.0' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <IntuitiveSorting />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='smart_healthcare_tableau_17col' inline='true' name='federated.smart_healthcare_data' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='smart_healthcare_tableau_17col' name='textscan.smart_healthcare'>
+            <connection class='textscan' directory='C:/Users/DELL/.gemini/antigravity/scratch/healthcare_analysis' filename='smart_healthcare_tableau_17col.csv' password='' port='0' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.smart_healthcare' name='smart_healthcare_tableau_17col.csv' table='[smart_healthcare_tableau_17col#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='patient_id' ordinal='0' />
+            <column datatype='integer' name='age' ordinal='1' />
+            <column datatype='string' name='age_group_segment' ordinal='2' />
+            <column datatype='string' name='gender' ordinal='3' />
+            <column datatype='real' name='bmi' ordinal='4' />
+            <column datatype='integer' name='exercise_level' ordinal='5' />
+            <column datatype='integer' name='smoking' ordinal='6' />
+            <column datatype='integer' name='alcohol' ordinal='7' />
+            <column datatype='integer' name='blood_pressure' ordinal='8' />
+            <column datatype='integer' name='cholesterol' ordinal='9' />
+            <column datatype='integer' name='glucose' ordinal='10' />
+            <column datatype='integer' name='fatigue' ordinal='11' />
+            <column datatype='integer' name='chest_pain' ordinal='12' />
+            <column datatype='integer' name='dizziness' ordinal='13' />
+            <column datatype='integer' name='heart_disease' ordinal='14' />
+            <column datatype='integer' name='diabetes' ordinal='15' />
+            <column datatype='integer' name='stroke' ordinal='16' />
+            <column datatype='real' name='health_risk_score' ordinal='17' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>patient_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[patient_id]</local-name>
+            <parent-name>[smart_healthcare_tableau_17col.csv]</parent-name>
+            <remote-alias>patient_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>age</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[age]</local-name>
+            <parent-name>[smart_healthcare_tableau_17col.csv]</parent-name>
+            <remote-alias>age</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>age_group_segment</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[age_group_segment]</local-name>
+            <parent-name>[smart_healthcare_tableau_17col.csv]</parent-name>
+            <remote-alias>age_group_segment</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>gender</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[gender]</local-name>
+            <parent-name>[smart_healthcare_tableau_17col.csv]</parent-name>
+            <remote-alias>gender</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>blood_pressure</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[blood_pressure]</local-name>
+            <parent-name>[smart_healthcare_tableau_17col.csv]</parent-name>
+            <remote-alias>blood_pressure</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>fatigue</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[fatigue]</local-name>
+            <parent-name>[smart_healthcare_tableau_17col.csv]</parent-name>
+            <remote-alias>fatigue</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>heart_disease</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[heart_disease]</local-name>
+            <parent-name>[smart_healthcare_tableau_17col.csv]</parent-name>
+            <remote-alias>heart_disease</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Patient ID' datatype='string' name='[patient_id]' role='dimension' type='nominal' />
+      <column caption='Age' datatype='integer' name='[age]' role='measure' type='quantitative' />
+      <column caption='Age Group' datatype='string' name='[age_group_segment]' role='dimension' type='nominal' />
+      <column caption='Gender' datatype='string' name='[gender]' role='dimension' type='nominal' />
+      <column caption='Blood Pressure (Systolic)' datatype='integer' name='[blood_pressure]' role='measure' type='quantitative' />
+      <column caption='Fatigue Flag' datatype='integer' name='[fatigue]' role='measure' type='quantitative' />
+      <column caption='Heart Disease Flag' datatype='integer' name='[heart_disease]' role='measure' type='quantitative' />
+
+      <!-- Calculated Field Definition: Age Group Logic -->
+      <column caption='Age Group (Calculated)' datatype='string' name='[Calculation_AgeGroup]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [age] &gt;= 18 AND [age] &lt;= 30 THEN &quot;Teenager&quot;&#10;ELSEIF [age] &gt;= 31 AND [age] &lt;= 40 THEN &quot;Young Adult&quot;&#10;ELSEIF [age] &gt;= 41 AND [age] &lt;= 50 THEN &quot;Adult&quot;&#10;ELSEIF [age] &gt;= 51 AND [age] &lt;= 60 THEN &quot;Middle Age&quot;&#10;ELSEIF [age] &gt;= 61 AND [age] &lt;= 70 THEN &quot;Senior&quot;&#10;ELSEIF [age] &gt; 70 THEN &quot;Old&quot;&#10;END' />
+      </column>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='KPI_Count_of_Patients'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontcolor='#1e293b' fontname='Arial' fontsize='14' bold='true'>Verification KPI: Count of Patients</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='smart_healthcare_tableau_17col' name='federated.smart_healthcare_data' />
+          </datasources>
+          <datasource-dependencies datasource='federated.smart_healthcare_data'>
+            <column caption='Patient ID' datatype='string' name='[patient_id]' role='dimension' type='nominal' />
+            <column-instance column='[patient_id]' derivation='Count' name='[cnt:patient_id:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text' />
+            <encodings>
+              <text column='[federated.smart_healthcare_data].[cnt:patient_id:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='worksheet-kpi-1' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Smart_Healthcare_Analytics_Dashboard'>
+      <style />
+      <size maxheight='800' maxwidth='1200' minheight='800' minwidth='1200' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='96000' id='5' param='horiz' type-v2='layout-flow' w='98000' x='1000' y='2000'>
+            <zone h='96000' id='6' name='KPI_Count_of_Patients' w='98000' x='1000' y='2000'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+      <simple-id uuid='dashboard-main-1' />
+    </dashboard>
+  </dashboards>
+  <windows saved-dpi-scale-factor='1.25'>
+    <window class='worksheet' maximized='true' name='KPI_Count_of_Patients'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='window-kpi-1' />
+    </window>
+    <window class='dashboard' name='Smart_Healthcare_Analytics_Dashboard'>
+      <viewpoints />
+      <active id='-1' />
+      <simple-id uuid='window-dashboard-1' />
+    </window>
+  </windows>
+</workbook>

@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="space-y-8">
+
+  <!-- HERO SECTION -->
+  <div class="bg-gradient-to-r from-slate-800 via-slate-800/90 to-slate-800/70 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-xl">
+    <div class="max-w-3xl">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20 mb-3">
+        Flask &amp; Tableau Web Integration
+      </span>
+      <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
+        Interactive Healthcare Decision Support System
+      </h1>
+      <p class="text-sm text-slate-300 leading-relaxed">
+        Seamlessly embedding Tableau Dashboards and Stories inside a Flask web application to deliver real-time, interactive exploration of patient health records, vital measurements, acute symptomatology, and chronic disease outcomes for healthcare professionals, researchers, and policymakers.
+      </p>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="flex flex-wrap items-center gap-4 mt-6">
+      <a href="/dashboard" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs tracking-wider uppercase transition-smooth shadow-lg shadow-rose-900/30">
+        <span>Open Tableau Dashboard</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </a>
+      <a href="/story" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-xs tracking-wider uppercase transition-smooth border border-slate-600">
+        <span>Explore 5-Scene Data Story</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- KPI RIBBON -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 shadow-sm">
+      <p class="text-xs text-slate-400 uppercase font-semibold">Total Verified Patients</p>
+      <p class="text-2xl font-bold text-white mt-1">{{ summary.total_patients }}</p>
+      <p class="text-[11px] text-sky-400 mt-0.5">100% Ingested (0 Truncation)</p>
+    </div>
+    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 shadow-sm">
+      <p class="text-xs text-slate-400 uppercase font-semibold">Mean Blood Pressure</p>
+      <p class="text-2xl font-bold text-amber-400 mt-1">{{ summary.mean_blood_pressure }}</p>
+      <p class="text-[11px] text-slate-400 mt-0.5">AHA Stage 1 Baseline (&ge;130)</p>
+    </div>
+    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 shadow-sm">
+      <p class="text-xs text-slate-400 uppercase font-semibold">Heart Disease Burden</p>
+      <p class="text-2xl font-bold text-rose-400 mt-1">{{ summary.disease_prevalence.heart_disease }}</p>
+      <p class="text-[11px] text-slate-400 mt-0.5">1,499 Diagnosed Cases</p>
+    </div>
+    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 shadow-sm">
+      <p class="text-xs text-slate-400 uppercase font-semibold">Stage 2 Hypertension</p>
+      <p class="text-2xl font-bold text-purple-400 mt-1">{{ summary.stage_2_hypertension_rate }}</p>
+      <p class="text-[11px] text-slate-400 mt-0.5">2,226 Patients (&ge;140 mmHg)</p>
+    </div>
+  </div>
+
+  <!-- 9 VISUALIZATION TYPES ACCORDION / GRID -->
+  <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-sm">
+    <h2 class="text-lg font-bold text-white mb-2">Integrated Visualization Architecture</h2>
+    <p class="text-xs text-slate-400 mb-6">The embedded Tableau solution combines 9 distinct analytical components:</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <span class="font-bold text-rose-400 block mb-1">1. KPI Banner</span>
+        <span class="text-slate-300">Patient Health &amp; Disease Overview metrics providing institutional baseline.</span>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <span class="font-bold text-amber-400 block mb-1">2. Bar Chart: Blood Pressure</span>
+        <span class="text-slate-300">Average Blood Pressure Across Age Groups with 130 mmHg AHA Stage 1 line.</span>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <span class="font-bold text-sky-400 block mb-1">3. Grouped Bar Chart: Substances</span>
+        <span class="text-slate-300">Alcohol &amp; Smoking Consumption distribution across all 6 age cohorts (~50%).</span>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <span class="font-bold text-emerald-400 block mb-1">4. Donut Chart: Exercise</span>
+        <span class="text-slate-300">Physical Activity Distribution: Low (32.9%), Moderate (33.5%), High (33.5%).</span>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <span class="font-bold text-purple-400 block mb-1">5. Pie Chart: Age Distribution</span>
+        <span class="text-slate-300">Patient Distribution by Age Group showing balanced life-stage volumes.</span>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <span class="font-bold text-rose-400 block mb-1">6. Grouped Bar: Disease by BMI</span>
+        <span class="text-slate-300">Heart Disease vs. Diabetes Prevalence comparing metabolic vs. adiposity risks.</span>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <span class="font-bold text-amber-400 block mb-1">7. Bar Chart: BMI vs. Heart</span>
+        <span class="text-slate-300">Direct step-ladder escalation from Underweight (20.5%) up to Obese (40.0%).</span>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <span class="font-bold text-sky-400 block mb-1">8. Heat Map: Risk Matrix</span>
+        <span class="text-slate-300">Heart Disease by BMI &amp; Exercise, illustrating the exercise protective buffer.</span>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <span class="font-bold text-teal-400 block mb-1">9. Bar Chart: Fatigue Condition</span>
+        <span class="text-slate-300">Distribution by Fatigue Condition across age groups (~51% baseline marker).</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

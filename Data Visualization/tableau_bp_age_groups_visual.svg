@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 650" width="1100" height="650" style="background:#0f172a; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="oldGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#be123c" />
+    </linearGradient>
+    <linearGradient id="youngGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="teenGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <linearGradient id="seniorGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#7e22ce" />
+    </linearGradient>
+    <linearGradient id="middleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="adultGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#14b8a6" />
+      <stop offset="100%" stop-color="#0f766e" />
+    </linearGradient>
+    <filter id="boxShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- MAIN CARD CONTAINER -->
+  <rect x="30" y="25" width="1040" height="600" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1" filter="url(#boxShadow)"/>
+
+  <!-- TOP TITLE & DYNAMIC FILTER HEADER -->
+  <g transform="translate(60, 45)">
+    <div style="display:flex; justify-content:space-between;">
+      <text x="0" y="22" fill="#f8fafc" font-size="20" font-weight="700">Average Blood Pressure Across Age Groups (Tableau Analysis)</text>
+      <text x="0" y="42" fill="#94a3b8" font-size="12">Dynamic exploration comparing hemodynamic pressure (Systolic mmHg) across all six age segments</text>
+    </div>
+
+    <!-- Filter Control Mockup -->
+    <g transform="translate(680, 0)">
+      <rect width="300" height="42" rx="8" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+      <text x="15" y="25" fill="#94a3b8" font-size="11">Age Group Filter:</text>
+      <text x="120" y="25" fill="#38bdf8" font-size="11" font-weight="700">All 6 Segments (Active) ▼</text>
+    </g>
+  </g>
+
+  <line x1="60" y1="110" x2="1040" y2="110" stroke="#334155" stroke-width="1"/>
+
+  <!-- CHART AREA (Left Span: 600px) -->
+  <g transform="translate(60, 130)">
+    
+    <!-- Reference Benchmark Lines -->
+    <!-- Scale: 120 mmHg at X=240, 130 mmHg at X=420, 140 mmHg at X=600. Width mapping: X = (BP - 110) * 18 -->
+    <!-- 130 mmHg Line (AHA Stage 1 Hypertension) -->
+    <line x1="420" y1="10" x2="420" y2="340" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4 4"/>
+    <rect x="355" y="348" width="130" height="22" rx="4" fill="#f43f5e" fill-opacity="0.15"/>
+    <text x="420" y="363" fill="#f43f5e" font-size="10" font-weight="700" text-anchor="middle">AHA Stage 1 (130 mmHg)</text>
+
+    <!-- 120 mmHg Line (Normal Standard) -->
+    <line x1="240" y1="10" x2="240" y2="340" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <rect x="180" y="348" width="120" height="22" rx="4" fill="#10b981" fill-opacity="0.15"/>
+    <text x="240" y="363" fill="#10b981" font-size="10" font-weight="700" text-anchor="middle">Normal BP (120 mmHg)</text>
+
+    <!-- BARS -->
+    <!-- 1. OLD GROUP (135.67 mmHg) -> Length: (135.67-110)*18 = 462px -->
+    <g transform="translate(0, 15)">
+      <text x="140" y="24" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="end">Old</text>
+      <rect x="155" y="6" width="462" height="26" rx="4" fill="url(#oldGrad)"/>
+      <text x="627" y="24" fill="#fda4af" font-size="13" font-weight="800">135.67 mmHg</text>
+      <text x="735" y="24" fill="#94a3b8" font-size="10" font-weight="600">(Highest Average)</text>
+    </g>
+
+    <!-- 2. YOUNG ADULTS (134.67 mmHg) -> Length: 444px -->
+    <g transform="translate(0, 65)">
+      <text x="140" y="24" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="end">Young Adults</text>
+      <rect x="155" y="6" width="444" height="26" rx="4" fill="url(#youngGrad)"/>
+      <text x="609" y="24" fill="#fcd34d" font-size="13" font-weight="800">134.67 mmHg</text>
+      <text x="717" y="24" fill="#94a3b8" font-size="10" font-weight="600">(Early-Onset Surge)</text>
+    </g>
+
+    <!-- 3. TEENAGERS (134.50 mmHg) -> Length: 441px -->
+    <g transform="translate(0, 115)">
+      <text x="140" y="24" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="end">Teenagers</text>
+      <rect x="155" y="6" width="441" height="26" rx="4" fill="url(#teenGrad)"/>
+      <text x="606" y="24" fill="#fef08a" font-size="13" font-weight="800">134.50 mmHg</text>
+      <text x="714" y="24" fill="#94a3b8" font-size="10" font-weight="600">(Youth Risk Alert)</text>
+    </g>
+
+    <!-- 4. SENIORS (134.34 mmHg) -> Length: 438px -->
+    <g transform="translate(0, 165)">
+      <text x="140" y="24" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="end">Seniors</text>
+      <rect x="155" y="6" width="438" height="26" rx="4" fill="url(#seniorGrad)"/>
+      <text x="603" y="24" fill="#d8b4fe" font-size="13" font-weight="800">134.34 mmHg</text>
+      <text x="711" y="24" fill="#94a3b8" font-size="10" font-weight="600">(Moderate Senior)</text>
+    </g>
+
+    <!-- 5. MIDDLE AGE (133.97 mmHg) -> Length: 431px -->
+    <g transform="translate(0, 215)">
+      <text x="140" y="24" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="end">Middle Age</text>
+      <rect x="155" y="6" width="431" height="26" rx="4" fill="url(#middleGrad)"/>
+      <text x="596" y="24" fill="#93c5fd" font-size="13" font-weight="800">133.97 mmHg</text>
+      <text x="704" y="24" fill="#94a3b8" font-size="10" font-weight="600">(Moderate Level)</text>
+    </g>
+
+    <!-- 6. ADULTS (133.61 mmHg) -> Length: 425px -->
+    <g transform="translate(0, 265)">
+      <text x="140" y="24" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="end">Adults</text>
+      <rect x="155" y="6" width="425" height="26" rx="4" fill="url(#adultGrad)"/>
+      <text x="590" y="24" fill="#5eead4" font-size="13" font-weight="800">133.61 mmHg</text>
+      <text x="698" y="24" fill="#94a3b8" font-size="10" font-weight="600">(Lowest Average)</text>
+    </g>
+
+    <!-- X-AXIS BASELINE -->
+    <line x1="155" y1="315" x2="850" y2="315" stroke="#475569" stroke-width="1.5"/>
+    <text x="155" y="333" fill="#64748b" font-size="10">110 mmHg</text>
+    <text x="330" y="333" fill="#64748b" font-size="10">125 mmHg</text>
+    <text x="510" y="333" fill="#64748b" font-size="10">135 mmHg</text>
+    <text x="690" y="333" fill="#64748b" font-size="10">145 mmHg</text>
+  </g>
+
+  <!-- RIGHT CLINICAL INSIGHTS CALLOUT PANEL (X: 860) -->
+  <g transform="translate(840, 140)">
+    <rect width="200" height="440" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    
+    <!-- Insight 1: Narrow Spread -->
+    <g transform="translate(15, 20)">
+      <rect width="170" height="20" rx="4" fill="#3b82f6" fill-opacity="0.15"/>
+      <text x="10" y="14" fill="#38bdf8" font-size="10" font-weight="700" text-transform="uppercase">The 2.06 mmHg Spread</text>
+      <text x="0" y="36" fill="#f8fafc" font-size="11" font-weight="600">Narrow Population Gap</text>
+      <text x="0" y="52" fill="#94a3b8" font-size="10" width="170">Range: 133.61 - 135.67.</text>
+      <text x="0" y="66" fill="#94a3b8" font-size="10">All 6 segments average</text>
+      <text x="0" y="80" fill="#f43f5e" font-size="10" font-weight="bold">ABOVE 130 mmHg threshold</text>
+      <text x="0" y="94" fill="#94a3b8" font-size="10">(AHA Stage 1 Hypertension).</text>
+    </g>
+
+    <line x1="15" y1="130" x2="185" y2="130" stroke="#1e293b" stroke-width="1"/>
+
+    <!-- Insight 2: Arterial Stiffening in Old -->
+    <g transform="translate(15, 145)">
+      <rect width="170" height="20" rx="4" fill="#f43f5e" fill-opacity="0.15"/>
+      <text x="10" y="14" fill="#f43f5e" font-size="10" font-weight="700" text-transform="uppercase">Arterial Stiffening</text>
+      <text x="0" y="36" fill="#f8fafc" font-size="11" font-weight="600">Old Group Peak (135.67)</text>
+      <text x="0" y="52" fill="#94a3b8" font-size="10">Gradual loss of vascular</text>
+      <text x="0" y="66" fill="#94a3b8" font-size="10">elasticity and aortic wall</text>
+      <text x="0" y="80" fill="#94a3b8" font-size="10">stiffening in later decades.</text>
+    </g>
+
+    <line x1="15" y1="245" x2="185" y2="245" stroke="#1e293b" stroke-width="1"/>
+
+    <!-- Insight 3: Youth Early-Onset -->
+    <g transform="translate(15, 260)">
+      <rect width="170" height="20" rx="4" fill="#f59e0b" fill-opacity="0.15"/>
+      <text x="10" y="14" fill="#fbbf24" font-size="10" font-weight="700" text-transform="uppercase">Early-Onset Risk</text>
+      <text x="0" y="36" fill="#f8fafc" font-size="11" font-weight="600">Youth Burden (&gt;134.5)</text>
+      <text x="0" y="52" fill="#94a3b8" font-size="10">Young Adults (134.67) and</text>
+      <text x="0" y="66" fill="#94a3b8" font-size="10">Teenagers (134.50) driven</text>
+      <text x="0" y="80" fill="#94a3b8" font-size="10">by smoking, alcohol use,</text>
+      <text x="0" y="94" fill="#94a3b8" font-size="10">&amp; physical inactivity.</text>
+    </g>
+
+    <line x1="15" y1="375" x2="185" y2="375" stroke="#1e293b" stroke-width="1"/>
+
+    <!-- Bottom summary tag -->
+    <text x="15" y="405" fill="#38bdf8" font-size="10" font-weight="bold">Clinical Conclusion:</text>
+    <text x="15" y="420" fill="#94a3b8" font-size="9">Systemic universal screening</text>
+    <text x="15" y="432" fill="#94a3b8" font-size="9">required regardless of age.</text>
+  </g>
+
+  <!-- BOTTOM FOOTER -->
+  <g transform="translate(60, 585)">
+    <text x="0" y="20" fill="#64748b" font-size="11">Data Source: <tspan fill="#94a3b8">smart_healthcare_dataset.csv (N = 5,000)</tspan> • Measure: <tspan fill="#94a3b8">AVG([blood_pressure])</tspan> • Dimension: <tspan fill="#94a3b8">[Age Group]</tspan></text>
+  </g>
+
+</svg>

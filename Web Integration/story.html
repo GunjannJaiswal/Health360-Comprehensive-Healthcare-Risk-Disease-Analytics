@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="space-y-6">
+
+  <!-- STORY HEADER -->
+  <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h1 class="text-lg font-bold text-white">Clinical Data Story: 5 Evidence Scenes</h1>
+      <p class="text-xs text-slate-400">Sequential Narrative Exploration of Chronic Disease Drivers &amp; Intervention Windows</p>
+    </div>
+
+    <!-- URL Switcher -->
+    <form action="/story" method="GET" class="flex items-center gap-2">
+      <input 
+        type="text" 
+        name="url" 
+        value="{{ viz_url }}" 
+        placeholder="Paste your Tableau Story URL..." 
+        class="bg-slate-900 text-slate-200 border border-slate-700 rounded-lg px-3 py-1.5 text-xs w-64 md:w-80 focus:outline-none focus:border-rose-500 font-mono"
+      />
+      <button type="submit" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-smooth">
+        Load Story
+      </button>
+    </form>
+  </div>
+
+  <!-- TABLEAU STORY EMBED CONTAINER -->
+  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 shadow-2xl relative">
+    
+    <div class="w-full rounded-xl overflow-hidden shadow-inner bg-slate-950 flex flex-col items-center justify-center min-h-[750px]">
+      
+      <!-- Modern Tableau Embedding API v3 Component -->
+      <tableau-viz 
+        id="tableauHealthcareStoryViz"
+        src="{{ viz_url }}"
+        toolbar="bottom"
+        hide-tabs
+        width="100%"
+        height="850px"
+        class="w-full">
+      </tableau-viz>
+    </div>
+
+    <!-- 5 SCENES REFERENCE GUIDE -->
+    <div class="mt-6 pt-4 border-t border-slate-700 grid grid-cols-1 sm:grid-cols-5 gap-3 text-xs">
+      <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-700/60">
+        <span class="font-bold text-rose-400 block mb-0.5">Scene 1</span>
+        <span class="text-slate-300">Introduction &amp; Research Question</span>
+      </div>
+      <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-700/60">
+        <span class="font-bold text-amber-400 block mb-0.5">Scene 2</span>
+        <span class="text-slate-300">Biomarker Factor Analysis</span>
+      </div>
+      <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-700/60">
+        <span class="font-bold text-purple-400 block mb-0.5">Scene 3</span>
+        <span class="text-slate-300">Surprising Nonlinear Interactions</span>
+      </div>
+      <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-700/60">
+        <span class="font-bold text-sky-400 block mb-0.5">Scene 4</span>
+        <span class="text-slate-300">Population Segment Equity</span>
+      </div>
+      <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-700/60">
+        <span class="font-bold text-emerald-400 block mb-0.5">Scene 5</span>
+        <span class="text-slate-300">Evidence-Based Recommendations</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

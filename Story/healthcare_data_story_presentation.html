@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Healthcare - Tableau Data Story Presentation</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .transition-smooth { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .badge { display: inline-flex; align-items: center; padding: 0.15rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-4 md:p-8 min-h-screen flex flex-col justify-between">
+
+  <!-- TOP STORY HEADER -->
+  <header class="mb-6 pb-4 border-b border-[var(--border)] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <div class="flex items-center gap-2 mb-1">
+        <span class="badge bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 font-mono">Healthcare Data Story</span>
+        <span class="badge bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-mono">5 Clinical Scenes</span>
+        <span class="badge bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-mono">N = 5,000 Patients</span>
+      </div>
+      <h1 class="text-xl md:text-2xl font-bold tracking-tight">Data Story: Decoding Chronic Disease Trajectories & Risk Stratification</h1>
+      <p class="text-xs text-[var(--muted-foreground)] mt-0.5">
+        A clinical narrative examining vital indicators, lifestyle determinants, and intervention windows across the lifespan.
+      </p>
+    </div>
+
+    <!-- Stepper Controls -->
+    <div class="flex items-center gap-2">
+      <button onclick="prevScene()" id="btn-prev" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-[var(--card)] border border-[var(--border)] hover:border-rose-500 disabled:opacity-40 disabled:hover:border-[var(--border)] transition-smooth" disabled>
+        &larr; Previous Scene
+      </button>
+      <span id="scene-counter" class="text-xs font-mono font-medium px-2 py-1 bg-[var(--background)] text-[var(--muted-foreground)]">Scene 1 of 5</span>
+      <button onclick="nextScene()" id="btn-next" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-600 text-white hover:bg-rose-700 transition-smooth">
+        Next Scene &rarr;
+      </button>
+    </div>
+  </header>
+
+  <!-- TABLEAU STORY POINT TABS (SCENE SELECTOR) -->
+  <nav class="mb-6 overflow-x-auto pb-1">
+    <div class="flex gap-2 min-w-max">
+      <button onclick="goToScene(1)" id="tab-1" class="px-3.5 py-2 text-xs font-semibold rounded-lg border border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400 transition-smooth text-left">
+        <span class="block text-[10px] uppercase opacity-75 font-mono">Scene 1</span>
+        Introduction & Clinical Question
+      </button>
+      <button onclick="goToScene(2)" id="tab-2" class="px-3.5 py-2 text-xs font-semibold rounded-lg border border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-smooth text-left">
+        <span class="block text-[10px] uppercase opacity-75 font-mono">Scene 2</span>
+        Factor Analysis & Disease Drivers
+      </button>
+      <button onclick="goToScene(3)" id="tab-3" class="px-3.5 py-2 text-xs font-semibold rounded-lg border border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-smooth text-left">
+        <span class="block text-[10px] uppercase opacity-75 font-mono">Scene 3</span>
+        Surprising Factor Interactions
+      </button>
+      <button onclick="goToScene(4)" id="tab-4" class="px-3.5 py-2 text-xs font-semibold rounded-lg border border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-smooth text-left">
+        <span class="block text-[10px] uppercase opacity-75 font-mono">Scene 4</span>
+        Population Segment & Equity Analysis
+      </button>
+      <button onclick="goToScene(5)" id="tab-5" class="px-3.5 py-2 text-xs font-semibold rounded-lg border border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-smooth text-left">
+        <span class="block text-[10px] uppercase opacity-75 font-mono">Scene 5</span>
+        Evidence-Based Recommendations
+      </button>
+    </div>
+  </nav>
+
+  <!-- STORY SCENE CONTAINERS -->
+  <main class="flex-1 mb-8">
+
+    <!-- SCENE 1: INTRODUCTION & CLINICAL RESEARCH QUESTION -->
+    <article id="scene-1" class="space-y-6">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="max-w-3xl mb-6">
+          <span class="badge bg-rose-500/10 text-rose-500 font-mono mb-2">Scene 1: Framing the Challenge</span>
+          <h2 class="text-xl font-bold tracking-tight mb-2">The Silent Epidemic: When Does Chronic Disease Truly Begin?</h2>
+          <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+            Cardiovascular diseases, diabetes, and stroke represent the primary global drivers of chronic morbidity and preventable mortality. This cross-sectional study investigates <strong>5,000 comprehensive patient records</strong> across demographic brackets (ages 18 to 79), capturing vital signs, lifestyle consumption, acute symptoms, and chronic outcomes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+            <span class="text-xs text-[var(--muted-foreground)] uppercase font-semibold">Cohort Studied</span>
+            <div class="text-2xl font-bold mt-1">5,000</div>
+            <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Ages 18-79 (Balanced Gender)</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+            <span class="text-xs text-[var(--muted-foreground)] uppercase font-semibold">Heart Disease Burden</span>
+            <div class="text-2xl font-bold text-rose-500 mt-1">30.0%</div>
+            <p class="text-xs text-[var(--muted-foreground)] mt-0.5">1,499 Diagnosed Patients</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+            <span class="text-xs text-[var(--muted-foreground)] uppercase font-semibold">Stage 2 Hypertension</span>
+            <div class="text-2xl font-bold text-amber-500 mt-1">44.5%</div>
+            <p class="text-xs text-[var(--muted-foreground)] mt-0.5">2,226 Patients (&ge;140 mmHg)</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+            <span class="text-xs text-[var(--muted-foreground)] uppercase font-semibold">High / Severe Risk</span>
+            <div class="text-2xl font-bold text-purple-500 mt-1">64.5%</div>
+            <p class="text-xs text-[var(--muted-foreground)] mt-0.5">3,224 Stratified Patients</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-lg bg-rose-500/5 border border-rose-500/20 text-xs text-[var(--foreground)]">
+          <strong>Central Clinical Research Question:</strong> What specific combinations of physiological biomarkers (blood pressure, fasting glucose, cholesterol) and lifestyle habits (smoking, alcohol, physical activity) most strongly predict chronic disease onset, and where is the critical intervention threshold to prevent irreversible multimorbidity?
+        </div>
+      </div>
+    </article>
+
+    <!-- SCENE 2: FACTOR ANALYSIS & DISEASE DRIVERS -->
+    <article id="scene-2" class="space-y-6 hidden">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="max-w-3xl mb-6">
+          <span class="badge bg-blue-500/10 text-blue-500 font-mono mb-2">Scene 2: Biomarker Impact</span>
+          <h2 class="text-xl font-bold tracking-tight mb-2">Deconstructing the Hierarchy of Chronic Disease Drivers</h2>
+          <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+            Multi-variable analysis reveals which physiological and behavioral factors most strongly dictate cardiovascular and metabolic deterioration across the population.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Factor Ranking Bars -->
+          <div class="space-y-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Factor Relative Impact on Disease Prediction</h3>
+            
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-semibold">Age Group (Life-Stage Transition)</span>
+                <span class="font-bold text-rose-500">Decisive Trigger (0% &rarr; 97%)</span>
+              </div>
+              <div class="w-full bg-[var(--border)] rounded-full h-3">
+                <div class="bg-rose-500 h-3 rounded-full" style="width: 96%"></div>
+              </div>
+              <p class="text-[11px] text-[var(--muted-foreground)] mt-1">Primary chronological gateway to cardiovascular events.</p>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-semibold">Systolic Blood Pressure (&ge;140 mmHg)</span>
+                <span class="font-bold text-amber-500">Major Hemodynamic Driver (44.5%)</span>
+              </div>
+              <div class="w-full bg-[var(--border)] rounded-full h-3">
+                <div class="bg-amber-500 h-3 rounded-full" style="width: 84%"></div>
+              </div>
+              <p class="text-[11px] text-[var(--muted-foreground)] mt-1">Stage 2 hypertension elevates stroke and heart disease odds by 3.2x.</p>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-semibold">Fasting Blood Glucose (&ge;126 mg/dL)</span>
+                <span class="font-bold text-teal-500">Metabolic Driver (57.3%)</span>
+              </div>
+              <div class="w-full bg-[var(--border)] rounded-full h-3">
+                <div class="bg-teal-500 h-3 rounded-full" style="width: 75%"></div>
+              </div>
+              <p class="text-[11px] text-[var(--muted-foreground)] mt-1">High prevalence of diabetic hyperglycemia across middle and senior tiers.</p>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-semibold">Substance Habits (Smoking + Alcohol)</span>
+                <span class="font-bold text-indigo-500">Behavioral Accelerator (24.8% Dual)</span>
+              </div>
+              <div class="w-full bg-[var(--border)] rounded-full h-3">
+                <div class="bg-indigo-500 h-3 rounded-full" style="width: 62%"></div>
+              </div>
+              <p class="text-[11px] text-[var(--muted-foreground)] mt-1">Compounds vascular inflammation and arterial stiffness.</p>
+            </div>
+          </div>
+
+          <!-- Chronic Disease Trio Breakdown -->
+          <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-5 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--muted-foreground)] mb-3">Chronic Condition Prevalence Overview</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center text-xs">
+                  <span>Diabetes Mellitus (Primary Metabolic Condition)</span>
+                  <span class="font-bold text-amber-500">34.9% (1,746 pts)</span>
+                </div>
+                <div class="flex justify-between items-center text-xs">
+                  <span>Heart Disease (Cardiovascular Diagnosis)</span>
+                  <span class="font-bold text-rose-500">30.0% (1,499 pts)</span>
+                </div>
+                <div class="flex justify-between items-center text-xs">
+                  <span>Stroke History (Cerebrovascular Event)</span>
+                  <span class="font-bold text-blue-500">24.9% (1,243 pts)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 p-3 rounded-lg bg-[var(--card)] border border-[var(--border)] text-xs text-[var(--muted-foreground)]">
+              <strong>Clinical Finding:</strong> Diabetes is the leading chronic condition in this population (34.9%), preceding heart disease and stroke as the primary metabolic precursor.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SCENE 3: SURPRISING FACTOR INTERACTIONS -->
+    <article id="scene-3" class="space-y-6 hidden">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="max-w-3xl mb-6">
+          <span class="badge bg-purple-500/10 text-purple-500 font-mono mb-2">Scene 3: Deep Clinical Insights</span>
+          <h2 class="text-xl font-bold tracking-tight mb-2">Surprising Interactions: The "Pre-Disease Window" & The Multimorbidity Cliff</h2>
+          <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+            Exploratory analysis reveals two unexpected nonlinear clinical phenomena that challenge traditional gradual disease modeling: a 30-year silent pre-disease window followed by an abrupt comorbidity saturation cliff.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Phenomenon 1: Pre-Disease Window -->
+          <div class="p-5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400">Phenomenon 1: The Pre-Disease Window (Ages 18-49)</h4>
+              <span class="badge bg-blue-500/10 text-blue-500">N = 2,536</span>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between">
+                <span>Diagnosed Heart Disease & Stroke:</span>
+                <span class="font-bold text-emerald-500">0.0% (Zero Diagnosed Cases)</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Stage 2 Hypertension (&ge;140 mmHg):</span>
+                <span class="font-bold text-rose-500">44.3% (1,123 Patients)</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Reported Fatigue Conditions:</span>
+                <span class="font-bold text-amber-500">51.0% (1,294 Patients)</span>
+              </div>
+            </div>
+            <div class="p-3 bg-[var(--card)] rounded-lg border border-[var(--border)] text-xs text-[var(--muted-foreground)]">
+              <strong>Surprising Insight:</strong> Over half of young and middle adults already suffer from acute fatigue and advanced hypertension decades before chronic disease is officially diagnosed. The disease is silently developing long before clinical onset.
+            </div>
+          </div>
+
+          <!-- Phenomenon 2: The Multimorbidity Cliff -->
+          <div class="p-5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-xs uppercase tracking-wider text-rose-600 dark:text-rose-400">Phenomenon 2: The Senior Multimorbidity Cliff (Age 65+)</h4>
+              <span class="badge bg-rose-500/10 text-rose-500">N = 1,227</span>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between">
+                <span>Heart Disease Prevalence:</span>
+                <span class="font-bold text-rose-500">96.7% (1,186 Patients)</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Diabetes Mellitus Prevalence:</span>
+                <span class="font-bold text-rose-500">100.0% (1,227 Patients)</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Stroke History:</span>
+                <span class="font-bold text-rose-500">98.6% (1,210 Patients)</span>
+              </div>
+              <div class="flex justify-between">
+                <span>All 3 Conditions Concurrently:</span>
+                <span class="font-bold text-purple-600 dark:text-purple-400">98.4% (1,207 Patients)</span>
+              </div>
+            </div>
+            <div class="p-3 bg-[var(--card)] rounded-lg border border-[var(--border)] text-xs text-[var(--muted-foreground)]">
+              <strong>Surprising Insight:</strong> Chronic disease in seniors does not occur in isolation. Almost 99% of senior patients suffer from cardiovascular, diabetic, and cerebrovascular disease simultaneously, demanding unified polypharmacy care.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SCENE 4: DEMOGRAPHIC EQUITY & SEGMENT ANALYSIS -->
+    <article id="scene-4" class="space-y-6 hidden">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="max-w-3xl mb-6">
+          <span class="badge bg-teal-500/10 text-teal-500 font-mono mb-2">Scene 4: Population Segments</span>
+          <h2 class="text-xl font-bold tracking-tight mb-2">Demographic Equity & Cross-Segment Vulnerability</h2>
+          <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+            Evaluating how clinical outcomes and lifestyle risks distribute across gender lines, BMI classifications, and behavioral habits.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Card 1: Gender Parity in Cardiovascular Risk -->
+          <div class="p-5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-xs uppercase tracking-wider text-[var(--muted-foreground)]">Gender Parity</h4>
+              <span class="badge bg-blue-500/10 text-blue-500">Balanced 50/50</span>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between">
+                <span>Male Patients (N=2,494):</span>
+                <span class="font-bold text-blue-500">30.1% Heart | 134.5 BP</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Female Patients (N=2,506):</span>
+                <span class="font-bold text-purple-500">29.9% Heart | 134.4 BP</span>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-[var(--border)] text-xs text-[var(--muted-foreground)]">
+              Cardiovascular disease rates and hypertension levels show <strong>complete gender parity</strong> across this cohort.
+            </div>
+          </div>
+
+          <!-- Card 2: The Obesity Gradient -->
+          <div class="p-5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-xs uppercase tracking-wider text-[var(--muted-foreground)]">Weight Classifications</h4>
+              <span class="badge bg-rose-500/10 text-rose-500">BMI Stratification</span>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between">
+                <span>Obese (&ge;30 BMI, 16.1%):</span>
+                <span class="font-bold text-rose-500">46.2% Stage 2 BP | 63.2 Risk</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Normal Weight (40.2%):</span>
+                <span class="font-bold text-emerald-500">43.6% Stage 2 BP | 56.4 Risk</span>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-[var(--border)] text-xs text-[var(--muted-foreground)]">
+              Obese patients experience an <strong>elevated risk baseline (+6.8 pts)</strong> driven by metabolic syndrome and vascular resistance.
+            </div>
+          </div>
+
+          <!-- Card 3: Dual Substance Convergence -->
+          <div class="p-5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-xs uppercase tracking-wider text-[var(--muted-foreground)]">Lifestyle Risk Synergy</h4>
+              <span class="badge bg-amber-500/10 text-amber-500">Dual Habits</span>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between">
+                <span>Smokers + Drinkers (24.8%):</span>
+                <span class="font-bold text-rose-500">63.8 Avg Risk Score</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Non-Smoker + Abstainer (25.3%):</span>
+                <span class="font-bold text-emerald-500">53.2 Avg Risk Score</span>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-[var(--border)] text-xs text-[var(--muted-foreground)]">
+              Concurrent tobacco and alcohol use imposes a <strong>10.6-point clinical risk penalty</strong> across all age cohorts.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SCENE 5: EVIDENCE-BASED CLINICAL RECOMMENDATIONS -->
+    <article id="scene-5" class="space-y-6 hidden">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
+        <div class="max-w-3xl mb-6">
+          <span class="badge bg-emerald-500/10 text-emerald-500 font-mono mb-2">Scene 5: Clinical Action</span>
+          <h2 class="text-xl font-bold tracking-tight mb-2">Evidence-Based Recommendations for Healthcare Leadership</h2>
+          <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+            Translating analytical discoveries into high-impact clinical pathways to reduce morbidity, optimize hospital admissions, and drive preventive population health.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-5 rounded-xl border border-[var(--border)] bg-[var(--background)] space-y-2">
+            <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-600 flex items-center justify-center font-bold text-sm">1</div>
+            <h4 class="font-bold text-sm">Pre-Disease Screening in Adults Under 50</h4>
+            <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+              Target adults aged 30–49 with automated blood pressure screening and early fasting glucose panels. Treating the <strong>44.3% with silent Stage 2 hypertension</strong> prevents clinical progression to heart disease at age 50+.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-[var(--border)] bg-[var(--background)] space-y-2">
+            <div class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-600 flex items-center justify-center font-bold text-sm">2</div>
+            <h4 class="font-bold text-sm">Unified Senior Multimorbidity Clinics (65+)</h4>
+            <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+              Transition senior care from fragmented disease siloes to consolidated clinics. Since <strong>98.4% of seniors have heart disease, diabetes, and stroke concurrently</strong>, prioritize integrated pharmacotherapy and stroke rehabilitation.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-[var(--border)] bg-[var(--background)] space-y-2">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center font-bold text-sm">3</div>
+            <h4 class="font-bold text-sm">Prescriptive Lifestyle & Substance Intervention</h4>
+            <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+              Establish clinical programs targeting the <strong>24.8% dual-substance population</strong>. Combining smoking cessation and medically supervised physical activity reduces average health risk scores by over 10 points.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- BOTTOM STORY FOOTER -->
+  <footer class="pt-4 border-t border-[var(--border)] text-xs text-[var(--muted-foreground)] flex flex-col sm:flex-row justify-between items-center gap-2">
+    <span>Tableau Healthcare Story Model</span>
+    <span>Dataset: <code>cleaned_healthcare_dataset.csv</code> (5,000 records)</span>
+  </footer>
+
+  <!-- SCRIPT FOR SCENE SWITCHING -->
+  <script>
+    let currentScene = 1;
+    const totalScenes = 5;
+
+    function goToScene(sceneNum) {
+      currentScene = sceneNum;
+      for (let i = 1; i <= totalScenes; i++) {
+        const sceneEl = document.getElementById('scene-' + i);
+        const tabEl = document.getElementById('tab-' + i);
+        if (i === sceneNum) {
+          sceneEl.classList.remove('hidden');
+          tabEl.classList.add('border-rose-500', 'bg-rose-500/10', 'text-rose-600', 'dark:text-rose-400');
+          tabEl.classList.remove('border-[var(--border)]', 'bg-[var(--card)]', 'text-[var(--muted-foreground)]');
+        } else {
+          sceneEl.classList.add('hidden');
+          tabEl.classList.remove('border-rose-500', 'bg-rose-500/10', 'text-rose-600', 'dark:text-rose-400');
+          tabEl.classList.add('border-[var(--border)]', 'bg-[var(--card)]', 'text-[var(--muted-foreground)]');
+        }
+      }
+
+      document.getElementById('scene-counter').innerText = 'Scene ' + currentScene + ' of ' + totalScenes;
+      document.getElementById('btn-prev').disabled = (currentScene === 1);
+      document.getElementById('btn-next').disabled = (currentScene === totalScenes);
+    }
+
+    function nextScene() {
+      if (currentScene < totalScenes) goToScene(currentScene + 1);
+    }
+
+    function prevScene() {
+      if (currentScene > 1) goToScene(currentScene - 1);
+    }
+  </script>
+</body>
+</html>
